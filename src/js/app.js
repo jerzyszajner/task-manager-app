@@ -1,6 +1,7 @@
 import addTasks from "./addTasks";
 import { app, database } from "./firebaseConfig";
 import { openModal, closeModal } from "./modal";
+import renderTask from "./renderTask";
 
 // Selecting DOM elements
 const formModal = document.querySelector(".form-modal");
@@ -23,6 +24,7 @@ const formSubmissionFeedback = document.querySelector(
 document.addEventListener("DOMContentLoaded", () => {
   openModal(formModal, openModalButton);
   closeModal(formModal, closeModalButton);
+  renderTask();
 });
 
 form.addEventListener("submit", (e) => {
@@ -35,4 +37,5 @@ form.addEventListener("submit", (e) => {
     prioritySelect.value
   );
   formSubmissionFeedback.textContent = "Task added successfully!";
+  renderTask();
 });

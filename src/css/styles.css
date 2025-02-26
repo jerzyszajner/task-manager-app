@@ -143,7 +143,6 @@ main {
 
 .tools__button {
   font-size: var(--font-size-medium);
-  font-size: 2rem;
 }
 
 .task--completed {

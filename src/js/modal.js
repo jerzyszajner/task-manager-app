@@ -8,6 +8,9 @@ const confirmDeleteModalButton = document.querySelector(
 );
 import deleteTask from "./deletetask";
 
+const formModal = document.querySelector(".form-modal");
+let previousConfirmDeleteHandler = null;
+
 const openModal = (formModal, openModalButton) => {
   openModalButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -29,10 +32,16 @@ const openDeleteModal = (id, taskTitle) => {
   const confirmDeleteHandler = async () => {
     await deleteTask(id);
     deleteModal.classList.remove("delete-modal--display");
-    // confirmDeleteModalButton.addEventListener("click", confirmDeleteHandler);
-    confirmDeleteModalButton.removeEventListener("click", confirmDeleteHandler);
+    if (previousConfirmDeleteHandler) {
+      confirmDeleteModalButton.removeEventListener(
+        "click",
+        previousConfirmDeleteHandler
+      );
+    }
   };
+
   confirmDeleteModalButton.addEventListener("click", confirmDeleteHandler);
+  previousConfirmDeleteHandler = confirmDeleteHandler;
 };
 
 const closeDeleteModal = () => {
@@ -41,4 +50,14 @@ const closeDeleteModal = () => {
   });
 };
 
-export { openModal, closeModal, openDeleteModal, closeDeleteModal };
+const openEditModal = () => {
+  formModal.classList.add("form-modal--display");
+};
+
+export {
+  openModal,
+  closeModal,
+  openDeleteModal,
+  closeDeleteModal,
+  openEditModal,
+};

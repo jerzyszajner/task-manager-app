@@ -9,6 +9,7 @@ import {
 } from "./modal";
 import renderTask from "./renderTask";
 import { editTask } from "./editTasks";
+import filterTasksByMonth from "./filterTasks";
 
 // Selecting DOM elements
 const formModal = document.querySelector(".form-modal");
@@ -50,4 +51,9 @@ form.addEventListener("submit", (e) => {
     appState.editState = null;
   }
   renderTask();
+});
+
+filterSelect.addEventListener("change", (e) => {
+  const selectedValue = e.target.value;
+  filterTasksByMonth(selectedValue);
 });

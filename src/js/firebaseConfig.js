@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDHpRUkZWV5zxeRv4DCYwr3PM0BMi-aR6I",
   authDomain: "task-manager-dfa16.firebaseapp.com",

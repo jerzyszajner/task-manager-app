@@ -1,3 +1,13 @@
+const deleteModal = document.querySelector(".delete-modal");
+const deletemodalText = document.querySelector(".delete-modal__text");
+const cancelDeleteButton = document.querySelector(
+  ".delete-modal__cancel-button"
+);
+const confirmDeleteModalButton = document.querySelector(
+  ".delete-modal__confirm-button"
+);
+import deleteTask from "./deletetask";
+
 const openModal = (formModal, openModalButton) => {
   openModalButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -12,4 +22,23 @@ const closeModal = (formModal, closeModalButton) => {
   });
 };
 
-export { openModal, closeModal };
+const openDeleteModal = (id, taskTitle) => {
+  deleteModal.classList.add("delete-modal--display");
+  deletemodalText.textContent = `Are you sure you want to delete ${taskTitle}?`;
+
+  const confirmDeleteHandler = async () => {
+    await deleteTask(id);
+    deleteModal.classList.remove("delete-modal--display");
+    // confirmDeleteModalButton.addEventListener("click", confirmDeleteHandler);
+    confirmDeleteModalButton.removeEventListener("click", confirmDeleteHandler);
+  };
+  confirmDeleteModalButton.addEventListener("click", confirmDeleteHandler);
+};
+
+const closeDeleteModal = () => {
+  cancelDeleteButton.addEventListener("click", () => {
+    deleteModal.classList.remove("delete-modal--display");
+  });
+};
+
+export { openModal, closeModal, openDeleteModal, closeDeleteModal };

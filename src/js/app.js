@@ -1,6 +1,11 @@
 import addTasks from "./addTasks";
 import { app, database } from "./firebaseConfig";
-import { openModal, closeModal } from "./modal";
+import {
+  openModal,
+  closeModal,
+  openDeleteModal,
+  closeDeleteModal,
+} from "./modal";
 import renderTask from "./renderTask";
 
 // Selecting DOM elements
@@ -25,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   openModal(formModal, openModalButton);
   closeModal(formModal, closeModalButton);
   renderTask();
+  closeDeleteModal();
 });
 
 form.addEventListener("submit", (e) => {

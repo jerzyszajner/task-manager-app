@@ -9,7 +9,7 @@ const addTasks = async (title, date, time, category, priority) => {
       time,
       category,
       priority,
-      isComplited: false,
+      isCompleted: false,
       createdAt: serverTimestamp(),
     };
     console.log("Task submitted successfully: ", task);
